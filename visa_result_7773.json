@@ -1,0 +1,8 @@
+{
+  "passport_country": "India",
+  "destination_country": "Canada",
+  "visa_requirement": "visa-required",
+  "raw_code": "0",
+  "description": "Visa must be obtained in advance",
+  "confidence": "high"
+}
