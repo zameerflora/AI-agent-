@@ -7,7 +7,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+        body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f5f5f5;
+      padding: 10px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .navbar-left,
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+	
+	
+	.navbar-right,
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+	
+	
+
+    .navbar input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+
+    .icon {
+      font-size: 22px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+	
+		
+	    :root {
             primary-green: #2e8b57;
             dark-green: #1e5631;
             light-green: #a4de9e;
@@ -59,12 +103,15 @@
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(dark-green);
             display: flex;
             align-items: center;
             gap: 10px;
+			position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .logo i {
@@ -105,13 +152,28 @@
             position: absolute;
             right: 0;
             background-color: var(white);
-            min-width: 160px;
+            min-width: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             border-radius: 8px;
             z-index: 1;
             overflow: hidden;
             animation: fadeIn 0.3s ease-out;
         }
+		
+		/* Menu dropdown (align left under ☰) */
+       .dropdown-content.left-menu {
+           left: 0;
+        }
+
+    /* Account dropdown (align right under 👤) */
+       .dropdown-content.right-menu {
+           right: 0;
+        }
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
         
         .dropdown-content a {
             color: var(dark-gray);
@@ -152,7 +214,7 @@
         
         .hero-overlay {
             position: absolute;
-            top: 0;
+            top: 3;
             left: 0;
             width: 100%;
             height: 100%;
@@ -189,6 +251,9 @@
             bottom: 0;
             background: rgba(30, 86, 49, 0.4);
             z-index: 1;
+			background-image: url('img/bg11.jpg'); /* Background image for the bio section */
+            background-size: cover;
+            background-position: center;
         }
 
         .main-title {
@@ -202,7 +267,8 @@
             margin-bottom: 0;
             animation: fadeIn 1.5s ease-in-out;
             line-height: 1.2;
-            padding: 20px;
+            padding: 60px;
+			
         }
         
         .hero-subtitle {
@@ -216,7 +282,7 @@
         
         .search-bar {
             display: flex;
-            width: 100%;
+            width: 120%;
             max-width: 700px;
             animation: fadeInUp 1s ease-in-out 0.6s both;
         }
@@ -224,9 +290,9 @@
         .search-input {
             flex: 1;
             padding: 18px 25px;
-            border: none;
+            border-color: dark-green;
             border-radius: 50px 0 0 50px;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             outline: none;
             transition: all 0.3s ease;
         }
@@ -236,8 +302,8 @@
         }
         
         .search-btn {
-            background-color: var(--primary-green);
-            color: white;
+            background-color: var(red);
+            color: dark-grey;
             border: none;
             padding: 0 30px;
             border-radius: 0 50px 50px 0;
@@ -262,8 +328,8 @@
             cursor: pointer;
             z-index: 3;
             background: rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,17 +372,19 @@
             background-image: url('https://www.transparenttextures.com/patterns/soft-circle-scales.png');
             opacity: 0.1;
             z-index: 0;
+			box-shadow: red;
+            transition: transform 0.3s;
         }
         
         .section-header {
             text-align: center;
             margin-bottom: 50px;
             position: relative;
-            z-index: 1;
+            z-index: 20;
         }
         
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(dark-green);
             margin-bottom: 15px;
             position: relative;
@@ -393,7 +461,7 @@
         }
         
         .destination-card {
-            background-color: var(white);
+            background-color: var(red);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -419,6 +487,7 @@
             height: 250px;
             overflow: hidden;
             position: relative;
+			
         }
         
         .card-image img {
@@ -426,6 +495,10 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.8s ease;
+			background-color: grey;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+            border-radius: 10px;
         }
         
         .destination-card:hover .card-image img {
@@ -602,7 +675,7 @@
         /* Newsletter Section */
         .newsletter-section {
             padding: 80px 5%;
-            background: linear-gradient(rgba(30, 86, 49, 0.8), rgba(30, 86, 49, 0.9)), url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(30, 96, 69, 0.8), rgba(30, 86, 49, 0.9)), url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: var(white);
@@ -651,7 +724,7 @@
             padding: 15px 25px;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.3rem;
             outline: none;
             transition: all 0.3s ease;
         }
@@ -936,21 +1009,48 @@
 </head>
 <body>
     <!-- Header -->
-    <div class="header" id="header">
-        <div class="logo">
-            <i class="fas fa-leaf"></i> Greenwish
+<div class="header" id="header">
+    <!-- Left: Menu Dropdown -->
+    <div class="dropdown navbar-right">
+        <button class="dropdown-btn">
+            <span class="icon">☰</span>
+        </button>
+        <div class="dropdown-content">
+            <a href="#">Gala</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Languages</a>
         </div>
+    </div>
+
+    <!-- Center: Logo -->
+    <div class="logo">
+        <i class="fas fa-leaf"></i> Greenwish 
+    </div>
+
+    <!-- Right: Notification + Account Dropdown -->
+    <div class="navbar-right">
+	     
+        <button class="dropdown-btn">
+                <span class="icon">🔔</span>
+	        </button> 
+
+            <strong>Notif</strong> <i class="fas fa-arrow-left"></i>
+            </button>
+        
         <div class="dropdown">
             <button class="dropdown-btn">
-                Menu <i class="fas fa-chevron-down"></i>
+                <span class="icon">👤</span>
             </button>
             <div class="dropdown-content">
-                <a href="#">Gala</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Languages</a>
+			    <button class="logout-btn">
+                    <strong>Log out</strong> <i class="fas fa-arrow-right"></i>
+                </button>
+              
             </div>
         </div>
     </div>
+</div>
+
     
     <!-- Hero Section with Video Background -->
     <div class="hero">
@@ -958,14 +1058,16 @@
             <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-seashore-with-rocks-1190-large.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay">
-            <div class="title-background">
-                <h1 class="main-title">Discover Earth's Most Beautiful Places</h1>
-            </div>
-            <p class="hero-subtitle">Explore breathtaking destinations, curated experiences, and unforgettable adventures around the globe</p>
             <div class="search-bar">
                 <input type="text" class="search-input" placeholder="Where would you like to go?">
-                <button class="search-btn">Search</button>
+	            <button class="search-btn">Search</button>
             </div>
+			
+			<div class="title-background">
+                <h1 class="main-title">Discover Earth's Most  Sustainable Places</h1>
+            </div>
+            <p class="hero-subtitle">Explore breathtaking destinations, curated experiences, and unforgettable adventures around the globe</p>
+            
         </div>
         <div class="scroll-down">
             <i class="fas fa-chevron-down"></i>
@@ -1004,7 +1106,7 @@
                     <h3 class="card-title">Bora Bora Paradise</h3>
                     <p class="card-description">Experience the ultimate luxury in overwater bungalows with crystal-clear turquoise waters right beneath you.</p>
                     <div class="card-price">$1,299 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1023,7 +1125,7 @@
                     <h3 class="card-title">Santorini Sunset Retreat</h3>
                     <p class="card-description">Whitewashed buildings with blue domes overlooking the caldera, famous for its breathtaking sunsets.</p>
                     <div class="card-price">$899 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1042,7 +1144,7 @@
                     <h3 class="card-title">Kyoto Cultural Journey</h3>
                     <p class="card-description">Discover ancient temples, traditional tea houses, and the magical cherry blossoms of Japan's cultural heart.</p>
                     <div class="card-price">$749 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1061,7 +1163,7 @@
                     <h3 class="card-title">African Safari Adventure</h3>
                     <p class="card-description">Witness the Great Migration and experience wildlife like never before in this once-in-a-lifetime adventure.</p>
                     <div class="card-price">$1,599 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1080,7 +1182,7 @@
                     <h3 class="card-title">San Francisco Explorer</h3>
                     <p class="card-description">From the Golden Gate Bridge to Alcatraz, explore the iconic landmarks of this vibrant coastal city.</p>
                     <div class="card-price">$10.99 <span>/ attraction</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1099,7 +1201,7 @@
                     <h3 class="card-title">Bali Spiritual Retreat</h3>
                     <p class="card-description">Find peace and rejuvenation with yoga, meditation, and Balinese healing traditions in tropical paradise.</p>
                     <div class="card-price">$699 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1118,7 +1220,7 @@
                     <h3 class="card-title">Alpine Mountain Escape</h3>
                     <p class="card-description">Breathtaking mountain views, cozy chalets, and world-class skiing in the heart of the Swiss Alps.</p>
                     <div class="card-price">$1,199 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
             
@@ -1137,7 +1239,7 @@
                     <h3 class="card-title">Patagonia Trekking</h3>
                     <p class="card-description">Explore the rugged beauty of Patagonia with guided treks through glaciers, mountains, and pristine wilderness.</p>
                     <div class="card-price">$1,450 <span>/ per night</span></div>
-                    <a href="#" class="card-btn">Book Now</a>
+                    <a href="#" class="card-btn">More</a>
                 </div>
             </div>
         </div>
@@ -1265,9 +1367,7 @@
                     <p><i class="fas fa-envelope"></i> hello@greenwish.com</p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</p>
                 </div>
-                <button class="logout-btn">
-                    <strong>Log out</strong> <i class="fas fa-arrow-right"></i>
-                </button>
+                
             </div>
         </div>
         
