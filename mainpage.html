@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenwish - World's Best Destinations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            primary-green: #2e8b57;
+            dark-green: #1e5631;
+            light-green: #a4de9e;
+            accent-green: #76b947;
+            white: #ffffff;
+            light-gray: #f8f9fa;
+            dark-gray: #333333;
+            gold: #FFD700;
+            section-bg: linear-gradient(135deg, rgba(246, 249, 244, 0.9) 0%, rgba(232, 245, 233, 0.9) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(light-gray);
+            color: var(dark-gray);
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png');
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            padding: 10px 5%;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(dark-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(primary-green);
+        }
+        
+        .time {
+            font-weight: 600;
+            color: var(dark-green);
+            font-size: 1.1rem;
+        }
+        
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(dark-green);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-btn:hover {
+            color: var(primary-green);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(white);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .dropdown-content a {
+            color: var(dark-gray);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(light-green);
+            color: var(--dark-green);
+            padding-left: 20px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(30, 86, 49, 0.2), rgba(46, 139, 87, 0.7));
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .title-background {
+            position: relative;
+            padding: 60px 40px;
+            margin-bottom: 30px;
+            background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 1200px;
+            width: 90%;
+        }
+
+        .title-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 86, 49, 0.4);
+            z-index: 1;
+        }
+
+        .main-title {
+            position: relative;
+            z-index: 2;
+            color: var(white);
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            animation: fadeIn 1.5s ease-in-out;
+            line-height: 1.2;
+            padding: 20px;
+        }
+        
+        .hero-subtitle {
+            color: var(--white);
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out 0.3s both;
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 100%;
+            max-width: 700px;
+            animation: fadeInUp 1s ease-in-out 0.6s both;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3);
+        }
+        
+        .search-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 50px 50px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: var(dark-green);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(white);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Destinations Section */
+        .destinations-container {
+            padding: 80px 5%;
+            background: var(section-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .destinations-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/soft-circle-scales.png');
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(dark-green);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(primary-green);
+        }
+        
+        .section-subtitle {
+            color: var(dark-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .destinations {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .destination {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(dark-gray);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+        }
+        
+        .destination.active {
+            background-color: var(primary-green);
+            color: var(white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 139, 87, 0.3);
+            border-color: var(primary-green);
+        }
+        
+        .destination:not(.active):hover {
+            color: var(primary-green);
+            border-color: var(primary-green);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Featured Destinations */
+        .featured-destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .destination-card {
+            background-color: var(white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            border: 1px solid rgba(46, 139, 87, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        .destination-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(46, 139, 87, 0.2);
+        }
+        
+        .card-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .destination-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: var(dark-gray);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-rating i {
+            color: var(gold);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(primary-green);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(dark-gray);
+            font-family: 'Playfair Display', serif;
+            transition: color 0.3s ease;
+        }
+        
+        .destination-card:hover .card-title {
+            color: var(primary-green);
+        }
+        
+        .card-description {
+            color: var(dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .card-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(dark-green);
+            margin-bottom: 15px;
+        }
+        
+        .card-price span {
+            font-size: 1rem;
+            color: var(dark-gray);
+            font-weight: 400;
+        }
+        
+        .card-btn {
+            display: inline-block;
+            background-color: var(primary-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(primary-green);
+            font-size: 0.9rem;
+        }
+        
+        .card-btn:hover {
+            background-color: transparent;
+            color: var(primary-green);
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 5%;
+            background-color: var(light-gray);
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-pixels.png');
+            background-attachment: fixed;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 30px 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .testimonial {
+            min-width: 350px;
+            background-color: var(white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: start;
+            text-align: left;
+            border: 1px solid rgba(46, 139, 87, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 139, 87, 0.1);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            color: var(primary-green);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(primary-green);
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(primary-green);
+            font-size: 0.9rem;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 5%;
+            background: linear-gradient(rgba(30, 86, 49, 0.8), rgba(30, 86, 49, 0.9)), url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%,(grey) 100%);
+            z-index: 1;
+        }
+        
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .newsletter-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .newsletter-desc {
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+        
+        .newsletter-btn {
+            background-color: var(gold);
+            color: var(dark-green);
+            border: none;
+            padding: 0 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(white);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(dark-green);
+            color: var(white);
+            padding: 80px 5% 30px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, var(primary-green), var(gold), var(primary-green));
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(primary-green);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+			color:purple;
+        }
+		
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .footer-links li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(primary-green);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links li:hover::before {
+            opacity: 10;
+            left: -5px;
+        }
+        
+        .footer-links a {
+            color: var(light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(white);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+			color:purple;
+        }
+        
+        .footer-contact i {
+            color: purple;
+            margin-top: 5px;
+			background-color:red;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color:red;
+            color: var(white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color:white;
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color:red;
+        }
+        
+        .logout-btn {
+            background-color: transparent;
+            border: 2px solid var(white);
+            color: var(white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .logout-btn:hover {
+            background-color: var(white);
+            color: var(dark-green);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .title-background {
+                padding: 40px 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .hero {
+                margin-top: 140px;
+                height: 70vh;
+                min-height: 500px;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-input {
+                border-radius: 50px;
+            }
+            
+            .search-btn {
+                border-radius: 50px;
+                padding: 15px;
+            }
+            
+            .destinations {
+                gap: 10px;
+            }
+            
+            .destination {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .featured-destinations {
+                grid-template-columns: 1fr;
+            }
+            
+            .title-background {
+                padding: 30px 15px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .testimonial {
+                min-width: 280px;
+            }
+            
+            .title-background {
+                padding: 20px 10px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header" id="header">
+        <div class="logo">
+            <i class="fas fa-leaf"></i> Greenwish
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-btn">
+                Menu <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Gala</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Languages</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Section with Video Background -->
+    <div class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-seashore-with-rocks-1190-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay">
+            <div class="title-background">
+                <h1 class="main-title">Discover Earth's Most Beautiful Places</h1>
+            </div>
+            <p class="hero-subtitle">Explore breathtaking destinations, curated experiences, and unforgettable adventures around the globe</p>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Where would you like to go?">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+    
+    <!-- Destinations Section -->
+    <div class="destinations-container">
+        <div class="section-header">
+            <h2 class="section-title">Popular Destinations</h2>
+            <p class="section-subtitle">Explore our handpicked selection of the world's most sought-after travel destinations</p>
+        </div>
+        
+        <div class="destinations">
+            <div class="destination active" data-category="all">All Destinations</div>
+            <div class="destination" data-category="beach">Beaches</div>
+            <div class="destination" data-category="mountain">Mountains</div>
+            <div class="destination" data-category="city">Cities</div>
+            <div class="destination" data-category="adventure">Adventure</div>
+            <div class="destination" data-category="cultural">Cultural</div>
+        </div>
+        
+        <div class="featured-destinations">
+            <!-- Destination 1 -->
+            <div class="destination-card" data-category="beach">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Bora Bora">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.9
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Bora Bora, French Polynesia
+                    </div>
+                    <h3 class="card-title">Bora Bora Paradise</h3>
+                    <p class="card-description">Experience the ultimate luxury in overwater bungalows with crystal-clear turquoise waters right beneath you.</p>
+                    <div class="card-price">$1,299 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 2 -->
+            <div class="destination-card" data-category="beach">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Santorini">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.8
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Santorini, Greece
+                    </div>
+                    <h3 class="card-title">Santorini Sunset Retreat</h3>
+                    <p class="card-description">Whitewashed buildings with blue domes overlooking the caldera, famous for its breathtaking sunsets.</p>
+                    <div class="card-price">$899 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 3 -->
+            <div class="destination-card" data-category="cultural">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1518258726560-ed44d7e0e9d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Kyoto">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.7
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Kyoto, Japan
+                    </div>
+                    <h3 class="card-title">Kyoto Cultural Journey</h3>
+                    <p class="card-description">Discover ancient temples, traditional tea houses, and the magical cherry blossoms of Japan's cultural heart.</p>
+                    <div class="card-price">$749 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 4 -->
+            <div class="destination-card" data-category="adventure">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1583422409516-289911ce76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Safari">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.9
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Serengeti, Tanzania
+                    </div>
+                    <h3 class="card-title">African Safari Adventure</h3>
+                    <p class="card-description">Witness the Great Migration and experience wildlife like never before in this once-in-a-lifetime adventure.</p>
+                    <div class="card-price">$1,599 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 5 -->
+            <div class="destination-card" data-category="city">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="San Francisco">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.6
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> San Francisco, USA
+                    </div>
+                    <h3 class="card-title">San Francisco Explorer</h3>
+                    <p class="card-description">From the Golden Gate Bridge to Alcatraz, explore the iconic landmarks of this vibrant coastal city.</p>
+                    <div class="card-price">$10.99 <span>/ attraction</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 6 -->
+            <div class="destination-card" data-category="cultural">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Bali">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.8
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Bali, Indonesia
+                    </div>
+                    <h3 class="card-title">Bali Spiritual Retreat</h3>
+                    <p class="card-description">Find peace and rejuvenation with yoga, meditation, and Balinese healing traditions in tropical paradise.</p>
+                    <div class="card-price">$699 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 7 -->
+            <div class="destination-card" data-category="mountain">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Swiss Alps">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.9
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Swiss Alps, Switzerland
+                    </div>
+                    <h3 class="card-title">Alpine Mountain Escape</h3>
+                    <p class="card-description">Breathtaking mountain views, cozy chalets, and world-class skiing in the heart of the Swiss Alps.</p>
+                    <div class="card-price">$1,199 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Destination 8 -->
+            <div class="destination-card" data-category="adventure">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Patagonia">
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i> 4.8
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i> Patagonia, Argentina
+                    </div>
+                    <h3 class="card-title">Patagonia Trekking</h3>
+                    <p class="card-description">Explore the rugged beauty of Patagonia with guided treks through glaciers, mountains, and pristine wilderness.</p>
+                    <div class="card-price">$1,450 <span>/ per night</span></div>
+                    <a href="#" class="card-btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Testimonials Section -->
+    <div class="testimonials-section">
+        <div class="section-header">
+            <h2 class="section-title">Traveler Stories</h2>
+            <p class="section-subtitle">Hear what our adventurers have to say about their experiences</p>
+        </div>
+        
+        <div class="testimonials-container">
+            <div class="testimonials">
+                <!-- Testimonial 1 -->
+                <div class="testimonial">
+                    <p class="testimonial-content">"The safari experience in Tanzania was beyond anything I could have imagined. Seeing lions, elephants, and giraffes in their natural habitat was truly humbling. The guides were incredibly knowledgeable and made sure we had the best views while respecting the animals' space."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Safari Adventurer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial">
+                    <p class="testimonial-content">"Our stay in the overwater bungalow in Bora Bora was like living in a dream. Waking up to the sound of gentle waves beneath us and snorkeling right from our deck was magical. The staff went above and beyond to make our honeymoon unforgettable."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Michael T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Michael Thompson</h4>
+                            <p>Honeymoon Traveler</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial">
+                    <p class="testimonial-content">"Kyoto in cherry blossom season was everything I hoped for and more. The cultural tours gave us deep insight into Japanese traditions, and our guide helped us discover hidden gems we would never have found on our own. Already planning our next trip!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily C." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emily Chen</h4>
+                            <p>Cultural Explorer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial">
+                    <p class="testimonial-content">"The Swiss Alps package exceeded all expectations. The chalet was cozy and luxurious, the skiing was world-class, and the views were absolutely breathtaking. We'll definitely be returning next winter!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>David Lawson</h4>
+                            <p>Mountain Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Get Travel Inspiration</h2>
+            <p class="newsletter-desc"><strong>Subscribe to our newsletter for exclusive deals, travel tips, and destination highlights delivered straight to your inbox.</strong></p>
+            
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Greenwish</h3>
+                <div class="footer-about">
+                    <p>Making dream vacations a reality since 2010. We specialize in creating personalized travel experiences that you'll cherish forever.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Destinations</a></li>
+                    <li><a href="#">Special Offers</a></li>
+                    <li><a href="#">Travel Guides</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Booking Guide</a></li>
+                    <li><a href="#">Cancellation Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Travel Street, Wander City, WC 10001</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> hello@greenwish.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</p>
+                </div>
+                <button class="logout-btn">
+                    <strong>Log out</strong> <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p><strong>&copy; 2023 Greenwish. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for travelers</strong></p>
+        </div>
+    </div>
+    
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Destination tab switching with filtering
+        document.querySelectorAll('.destination').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelector('.destination.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // Get category to filter
+                const category = this.dataset.category;
+                const cards = document.querySelectorAll('.destination-card');
+                
+                // Filter cards
+                cards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 50);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Initialize all cards as visible
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, 100);
+        });
+        
+        // Smooth scrolling for scroll down button
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.querySelector('.destinations-container').offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.destination-card, .testimonial').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter soon.`);
+            this.reset();
+        });
+        
+        // Logout button
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to log out?')) {
+                alert('You have been logged out successfully.');
+                // In a real app, you would redirect to logout page
+                // window.location.href = '/logout';
+            }
+        });
+    </script>
+</body>
+</html>
