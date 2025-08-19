@@ -1,0 +1,157 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url("green.jpg");
+}
+body {
+    font-family: 'Poppins', sans-serif;
+
+    /* ✅ Background image
+    background-image: url(".jpg");
+    /* replace with your file or URL */
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.screen {
+    width: 100%;
+    max-width: 400px;
+    
+   
+    padding: 30px;
+    border-radius: 30px;
+    /* increased for more roundness*/
+    
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alt Buttons */
+.alt-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background: #eee;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alt-btn:hover {
+    background: #ddd;
+}
+
+/* Small Text */
+.alt-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.terms {
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.terms a {
+    color: #2e4d2c;
+    text-decoration: none;
+}
+
+/* Main Button */
+.main-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2e4d2c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.main-btn:hover {
+    background: #245122;
+}
+
+h2 {
+    font-size: 20px;
+    color: #010000;
+    margin-bottom: 15px;
+}
+
+.logo-text {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #2e4d2c;
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+h1,
+h2 {
+    text-shadow: none;
+}
+
+/* Headings */
+h1 {
+    font-size: 20px;
+    color: #2e4d2c;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    /* Square size */
+    border-radius: 50%;
+    /* Makes it circular */
+    display: block;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Adds soft shadow */
+    object-fit: cover;
+    /* Ensures the image scales nicely */
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    /* Slight zoom on hover */
+}
